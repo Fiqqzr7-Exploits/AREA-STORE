@@ -3,9 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/Fiqqzr7-Exploits/FIQQZR7-COMMUNITY-/beab59dab79f6a9f857c7df89a64ef57f08ff110/file_00000000d504720ba1e5f37bb534caf2.png">
-    <link rel="shortcut icon" type="image/png" href="https://raw.githubusercontent.com/Fiqqzr7-Exploits/FIQQZR7-COMMUNITY-/beab59dab79f6a9f857c7df89a64ef57f08ff110/file_00000000d504720ba1e5f37bb534caf2.png">
-    <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/Fiqqzr7-Exploits/FIQQZR7-COMMUNITY-/beab59dab79f6a9f857c7df89a64ef57f08ff110/file_00000000d504720ba1e5f37bb534caf2.png">
+    <link rel="icon" type="image/svg+xml" href="https://cdn-icons-png.flaticon.com/512/5968/5968756.png">
+    <link rel="shortcut icon" type="image/svg+xml" href="https://cdn-icons-png.flaticon.com/512/5968/5968756.png">
     <title>AREA STORE</title>
     <style>
         * {
@@ -39,27 +38,19 @@
         }
 
         .app-brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-        }
-        .brand-logo {
-            height: 48px;
-            width: auto;
-            display: block;
-        }
-        .brand-text {
             display: inline-flex;
             align-items: baseline;
             gap: 4px;
+            text-decoration: none;
             font-size: 24px;
             font-weight: 1000;
             letter-spacing: -0.5px;
         }
+
         .brand-main {
             color: #10141f;
         }
+
         .brand-accent {
             color: #ff5b86;
         }
@@ -96,7 +87,6 @@
             padding: 20px 18px 40px;
         }
 
-        /* Hero Section */
         .store-hero {
             border: 3px solid #10141f;
             border-radius: 24px;
@@ -242,7 +232,6 @@
             word-break: break-word;
         }
 
-        /* Products Grid */
         .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -312,7 +301,6 @@
             transform: translateY(-2px);
         }
 
-        /* Discord Banner */
         .discord-banner {
             border: 3px solid #10141f;
             border-radius: 24px;
@@ -368,7 +356,6 @@
             box-shadow: 1px 1px 0 #10141f;
         }
 
-        /* Footer */
         .index-footer-clean {
             display: flex;
             justify-content: space-between;
@@ -404,21 +391,15 @@
                 flex-direction: column;
                 align-items: flex-start;
             }
-            .brand-logo {
-                height: 40px;
-            }
         }
     </style>
 </head>
 <body>
 <div class="app-shell">
     <header class="app-topbar">
-        <!-- Logo AREA STORE dari link gambar utama -->
+        <!-- Hanya teks AREA STORE, tiada logo gambar -->
         <a class="app-brand" href="#">
-            <img class="brand-logo" src="" alt="AREA STORE Logo">
-            <div class="brand-text">
-                <span class="brand-main">AREA</span><span class="brand-accent">STORE</span>
-            </div>
+            <span class="brand-main">AREA</span><span class="brand-accent">STORE</span>
         </a>
         <a class="discord-link" href="https://discord.gg/tRgfujtNw6" target="_blank">
             <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="Discord">
@@ -427,7 +408,6 @@
     </header>
 
     <main class="app-content">
-        <!-- Hero -->
         <div class="store-hero">
             <h1>AREA <span>STORE</span></h1>
             <p>Membeli Barangan Robux Termurah Dan Nitro Boost Discord Sila Liat Pilihan Di Bawah.</p>
@@ -457,10 +437,11 @@
             </div>
         </div>
 
+        <!-- Produk -->
         <div class="calculator-card">
             <div class="section-head">
                 <div>
-                    <div class="eyebrow">PILIH PRODUK</div>
+                    <div class="eyebrow">PRODUK LISENSI</div>
                     <h2>Pilih Lisensi Kamu</h2>
                 </div>
             </div>
@@ -527,7 +508,6 @@
 
     function setMode(selected) {
         mode = selected;
-
         if (selected === "before") {
             beforeBtn.classList.add("active");
             beforeBtn.classList.remove("inactive");
@@ -541,18 +521,15 @@
             beforeBtn.classList.remove("active");
             input.placeholder = "Robux after tax";
         }
-
         calculate();
     }
 
     function calculate() {
         const value = parseFloat(input.value);
-
         if (isNaN(value)) {
             resultEl.innerText = "0 ROBUX";
             return;
         }
-
         let result;
         if (mode === "before") {
             result = Math.floor(value * 0.7);
