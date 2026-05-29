@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/svg+xml" href="https://cdn-icons-png.flaticon.com/512/5968/5968756.png">
+    <link rel="shortcut icon" type="image/svg+xml" href="https://cdn-icons-png.flaticon.com/512/5968/5968756.png">
+    <title>AREA STORE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f5f6fb;
+            font-family: system-ui, -apple-system, 'Segoe UI', 'Inter', sans-serif;
+        }
+
+        .app-shell {
+            width: min(1120px, 100%);
+            margin: 0 auto;
+            padding-bottom: 24px;
+        }
+
+        .app-topbar {
+            width: min(1120px, 100%);
+            margin: 0 auto;
+            background: #fff;
+            border-bottom: 3px solid #10141f;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .app-brand {
+            display: inline-flex;
+            align-items: baseline;
+            gap: 4px;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: 1000;
+            letter-spacing: -0.5px;
+        }
+
+        .brand-main {
+            color: #10141f;
+        }
+
+        .brand-accent {
+            color: #ff5b86;
+        }
+
+        .discord-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #5865F2;
+            border: 2.5px solid #10141f;
+            border-radius: 999px;
+            padding: 8px 18px;
+            color: white;
+            text-decoration: none;
+            font-weight: 1000;
+            font-size: 14px;
+            box-shadow: 3px 3px 0 #10141f;
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+
+        .discord-link:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0 #10141f;
+        }
+
+        .discord-link img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .app-content {
+            width: min(1120px, 100%);
+            margin: 0 auto;
+            padding: 20px 18px 40px;
+        }
+
+        /* Hero Section */
+        .store-hero {
+            border: 3px solid #10141f;
+            border-radius: 24px;
+            background: #fff;
+            box-shadow: 5px 5px 0 #10141f;
+            padding: 28px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .store-hero h1 {
+            font-size: clamp(32px, 5vw, 52px);
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+
+        .store-hero h1 span {
+            color: #ff5b86;
+        }
+
+        .store-hero p {
+            color: #596174;
+            font-weight: 750;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Calculator Card */
+        .calculator-card {
+            border: 3px solid #10141f;
+            border-radius: 24px;
+            background: #fff;
+            box-shadow: 5px 5px 0 #10141f;
+            padding: 28px;
+            margin-bottom: 24px;
+        }
+
+        .section-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 16px;
+            border-bottom: 2.5px solid #10141f;
+            padding-bottom: 16px;
+            margin-bottom: 24px;
+        }
+
+        .section-head .eyebrow {
+            font-size: 12px;
+            font-weight: 1000;
+            letter-spacing: 2.3px;
+            color: #ff5b86;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .section-head h2 {
+            font-size: clamp(24px, 4vw, 34px);
+            line-height: 1.15;
+        }
+
+        .mode-toggle {
+            display: flex;
+            gap: 10px;
+            background: #f0f2f8;
+            padding: 6px;
+            border-radius: 999px;
+            border: 2px solid #10141f;
+        }
+
+        .mode-btn {
+            border: none;
+            background: transparent;
+            padding: 8px 20px;
+            font-weight: 1000;
+            font-size: 14px;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #596174;
+        }
+
+        .mode-btn.active {
+            background: #10141f;
+            color: white;
+        }
+
+        .mode-btn.inactive {
+            background: transparent;
+            color: #596174;
+        }
+
+        .input-group {
+            margin-bottom: 24px;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: 1000;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #10141f;
+        }
+
+        .robux-input {
+            width: 100%;
+            padding: 16px 18px;
+            font-size: 18px;
+            font-weight: 700;
+            border: 2.5px solid #10141f;
+            border-radius: 16px;
+            background: #fff;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .robux-input:focus {
+            box-shadow: 3px 3px 0 #ff5b86;
+            border-color: #ff5b86;
+        }
+
+        .result-box {
+            background: #fff5c9;
+            border: 2.5px solid #10141f;
+            border-radius: 18px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .result-box small {
+            font-size: 12px;
+            font-weight: 1000;
+            letter-spacing: 2px;
+            color: #596174;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .result-value {
+            font-size: 36px;
+            font-weight: 1000;
+            color: #10141f;
+            word-break: break-word;
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        .product-card {
+            border: 3px solid #10141f;
+            border-radius: 20px;
+            background: #fff;
+            box-shadow: 4px 4px 0 #10141f;
+            padding: 20px;
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+
+        .product-card:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0 #10141f;
+        }
+
+        .product-icon {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 12px;
+            object-fit: contain;
+        }
+
+        .product-title {
+            font-size: 20px;
+            font-weight: 1000;
+            margin-bottom: 6px;
+        }
+
+        .product-desc {
+            color: #596174;
+            font-weight: 750;
+            font-size: 13px;
+            margin-bottom: 16px;
+            line-height: 1.4;
+        }
+
+        .product-price {
+            font-size: 24px;
+            font-weight: 1000;
+            color: #ff5b86;
+            margin-bottom: 12px;
+        }
+
+        .product-price small {
+            font-size: 12px;
+            font-weight: 750;
+            color: #596174;
+        }
+
+        .buy-btn {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            background: #10141f;
+            color: white;
+            border: 2px solid #10141f;
+            border-radius: 40px;
+            padding: 10px;
+            font-weight: 1000;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .buy-btn:hover {
+            background: #ff5b86;
+            border-color: #10141f;
+            transform: translateY(-2px);
+        }
+
+        /* Discord Banner */
+        .discord-banner {
+            border: 3px solid #10141f;
+            border-radius: 24px;
+            background: #5865F2;
+            box-shadow: 5px 5px 0 #10141f;
+            padding: 24px 28px;
+            margin: 32px 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .discord-banner-content {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .discord-banner-content img {
+            width: 48px;
+            height: 48px;
+            filter: brightness(0) invert(1);
+        }
+
+        .discord-banner-text h3 {
+            color: white;
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+
+        .discord-banner-text p {
+            color: rgba(255,255,255,0.9);
+            font-weight: 750;
+        }
+
+        .discord-banner-btn {
+            background: white;
+            color: #5865F2;
+            border: 2.5px solid #10141f;
+            border-radius: 999px;
+            padding: 12px 24px;
+            font-weight: 1000;
+            text-decoration: none;
+            box-shadow: 3px 3px 0 #10141f;
+            transition: all 0.1s;
+        }
+
+        .discord-banner-btn:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0 #10141f;
+        }
+
+        /* Footer */
+        .index-footer-clean {
+            display: flex;
+            justify-content: space-between;
+            gap: 14px;
+            border: 3px solid #10141f;
+            border-radius: 20px;
+            background: #fff;
+            box-shadow: 5px 5px 0 #10141f;
+            padding: 16px 20px;
+            font-size: 12px;
+            font-weight: 1000;
+            letter-spacing: 2px;
+            margin-top: 24px;
+        }
+
+        @media (max-width: 700px) {
+            .app-topbar {
+                flex-direction: column;
+                text-align: center;
+            }
+            .discord-banner {
+                flex-direction: column;
+                text-align: center;
+            }
+            .discord-banner-content {
+                justify-content: center;
+            }
+            .index-footer-clean {
+                flex-direction: column;
+                text-align: center;
+            }
+            .section-head {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="app-shell">
+    <header class="app-topbar">
+        <a class="app-brand" href="#">
+            <span class="brand-main">AREA</span><span class="brand-accent">STORE</span>
+        </a>
+        <a class="discord-link" href="https://discord.gg/tRgfujtNw6" target="_blank">
+            <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="Discord">
+            Join Discord
+        </a>
+    </header>
+
+    <main class="app-content">
+        <!-- Hero -->
+        <div class="store-hero">
+            <h1>AREA <span>STORE</span></h1>
+            <p>Membeli Barangan Robux Termurah Dan Nitro Boost Discord Sila Liat Pilihan Di Bawah.</p>
+        </div>
+
+        <!-- Kalkulator Robux -->
+        <div class="calculator-card">
+            <div class="section-head">
+                <div>
+                    <div class="eyebrow">ROBUX CONVERTER</div>
+                    <h2>Before Tax / After Tax</h2>
+                </div>
+                <div class="mode-toggle" id="modeToggle">
+                    <button class="mode-btn active" id="beforeBtn" onclick="setMode('before')">BEFORE TAX</button>
+                    <button class="mode-btn inactive" id="afterBtn" onclick="setMode('after')">AFTER TAX</button>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>💰 MASUKKAN NOMINAL ROBUX</label>
+                <input type="number" id="robuxInput" class="robux-input" placeholder="Robux before tax" value="100">
+            </div>
+
+            <div class="result-box">
+                <small>💰 HASIL KONVERSI</small>
+                <div class="result-value" id="result">70 ROBUX</div>
+            </div>
+        </div>
+
+        <!-- Produk Lisensi -->
+        <div class="calculator-card">
+            <div class="section-head">
+                <div>
+                    <div class="eyebrow">PRODUK LISENSI</div>
+                    <h2>Pilih Lisensi Kamu</h2>
+                </div>
+            </div>
+
+            <div class="products-grid">
+                <div class="product-card">
+                    <img class="product-icon" src="https://www.image2url.com/r2/default/images/1780017988126-2dddd2eb-9aa4-4020-a832-556f9a6d3442.png" alt="Logo">
+                    <div class="product-title">GAMEPASS AFTER TAX</div>
+                    <div class="product-desc">LANGSUNG PROSES BERLAKU KELIPATAN PENDING 5 DAY</div>
+                    <div class="product-price">Rp 115.000</div>
+                    <a href="https://discord.gg/J9KWj4bA8Z" target="_blank" class="buy-btn">Beli via Discord</a>
+                </div>
+                <div class="product-card">
+                    <img class="product-icon" src="https://www.image2url.com/r2/default/images/1780017988126-2dddd2eb-9aa4-4020-a832-556f9a6d3442.png" alt="Logo">
+                    <div class="product-title">ITEM LIMITED ROBLOX</div>
+                    <div class="product-desc">Informasi Lengkap Join Discord.</div>
+                    <div class="product-price">Rp 1.000.000</div>
+                    <a href="https://discord.gg/J9KWj4bA8Z" target="_blank" class="buy-btn">Beli via Discord</a>
+                </div>
+                <div class="product-card">
+                    <img class="product-icon" src="https://www.image2url.com/r2/default/images/1780017988126-2dddd2eb-9aa4-4020-a832-556f9a6d3442.png" alt="Logo">
+                    <div class="product-title">Server Boost</div>
+                    <div class="product-desc">HARGA BOOST SERVER 3BULAN MINIMAL 2 PEMBELIAN</div>
+                    <div class="product-price">Rp 25.000</div>
+                    <a href="https://discord.gg/J9KWj4bA8Z" target="_blank" class="buy-btn">Beli via Discord</a>
+                </div>
+                <div class="product-card">
+                    <img class="product-icon" src="https://www.image2url.com/r2/default/images/1780017988126-2dddd2eb-9aa4-4020-a832-556f9a6d3442.png" alt="Logo">
+                    <div class="product-title">Nitro Discord</div>
+                    <div class="product-desc">Nitro Harga Promo 3Bulan</div>
+                    <div class="product-price">Rp 50.000</div>
+                    <a href="https://discord.gg/J9KWj4bA8Z" target="_blank" class="buy-btn">Beli via Discord</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Discord Banner -->
+        <div class="discord-banner">
+            <div class="discord-banner-content">
+                <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="Discord">
+                <div class="discord-banner-text">
+                    <h3>Mau beli lisensi?</h3>
+                    <p>Join Discord server kami untuk pembelian dan informasi lebih lanjut.</p>
+                </div>
+            </div>
+            <a href="https://discord.gg/J9KWj4bA8Z" target="_blank" class="discord-banner-btn">
+                Join Discord Store →
+            </a>
+        </div>
+
+        <footer class="index-footer-clean">
+            <b>Powered By Fiqqzr7</b>
+            <span>COPYRIGHT 2026</span>
+        </footer>
+    </main>
+</div>
+
+<script>
+    let mode = "before";
+    const input = document.getElementById("robuxInput");
+    const beforeBtn = document.getElementById("beforeBtn");
+    const afterBtn = document.getElementById("afterBtn");
+    const resultEl = document.getElementById("result");
+
+    function setMode(selected) {
+        mode = selected;
+
+        if (selected === "before") {
+            beforeBtn.classList.add("active");
+            beforeBtn.classList.remove("inactive");
+            afterBtn.classList.add("inactive");
+            afterBtn.classList.remove("active");
+            input.placeholder = "Robux before tax";
+        } else {
+            afterBtn.classList.add("active");
+            afterBtn.classList.remove("inactive");
+            beforeBtn.classList.add("inactive");
+            beforeBtn.classList.remove("active");
+            input.placeholder = "Robux after tax";
+        }
+
+        calculate();
+    }
+
+    function calculate() {
+        const value = parseFloat(input.value);
+
+        if (isNaN(value)) {
+            resultEl.innerText = "0 ROBUX";
+            return;
+        }
+
+        let result;
+        if (mode === "before") {
+            result = Math.floor(value * 0.7);
+            resultEl.innerText = result.toLocaleString() + " ROBUX (after tax)";
+        } else {
+            result = Math.floor(value / 0.7);
+            resultEl.innerText = result.toLocaleString() + " ROBUX (before tax)";
+        }
+    }
+
+    input.addEventListener("input", calculate);
+    calculate();
+</script>
+
+</body>
+</html>
